@@ -31,7 +31,7 @@ lCyl = l-(2*ri);    %Protrusion body length (ie w/o cap or base); nm
 n = l*2;                %number of bins to split line into
 dz = l/n;               %dist bins step over; nm
 z = linspace(0,l,n);    %array of bins; bin step size l/n nm; units: nm
-z = z(2:n);             %Remove 0 bin to avoid inf problems
+    z = z(2:n);         %Remove 0 bin to avoid inf problems
     %z will be right-side inclusive. Ie bin 2 will cover (l/n,2*l/n]
 
 %-------------------------------
