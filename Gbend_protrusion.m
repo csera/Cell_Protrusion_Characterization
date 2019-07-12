@@ -68,7 +68,7 @@ sBaseSum = sum(sBaseStrip);
 % Calc body bending E
 %-------------------------------
 %Dist along protrusion for body (abs meas)
-zBody = z(ceil(ri*n/l)+1:ceil(n - (ri*n/l)));
+zBody = z(ceil(ri*n/l)+1:ceil(n - (R*n/l)));
 
 %The "stress" along the body (note: cylinder => one r is inf)
 sBody = zeros(1,length(zBody));
@@ -86,7 +86,7 @@ GBodyTheor = Kb*pi*(l-2*ri)/R;  %Theoretical eq for G of whole body
 % Calc cap bending E
 %-------------------------------
 %Dist along protrusion for cap (abs meas)
-zCap = z(ceil(n - (ri*n/l))+1:n-1);
+zCap = z(ceil(n - (R*n/l))+1:n-1);
 
 sCap = zeros(1,length(zCap));
 %sCapStrip = sCap;              %I'm going to ignore this for now
