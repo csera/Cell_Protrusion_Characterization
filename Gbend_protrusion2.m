@@ -1,4 +1,4 @@
-% Version: 2.0      2019-07-10
+% Version: 2.0.1      2019-07-10, 2019-08-08
 
 % Numerical calculation of membrane protrusion bending stress & energy
 % for an array of torus tube radii
@@ -6,6 +6,8 @@
 %       a) Base: half of the inner surface of a torus
 %       b) Body: cylinder
 %       c) Cap: hemisphere
+%
+% Exports the z slices and tension profile as .csv files
 
 clear;
 
@@ -13,99 +15,85 @@ clear;
 %   Define system props
 %-------------------------------
 %Define membrane properties
-Kb = 15;            %Bending modulus; kT
-thickness = 5;      %Membrane thickness; nm
+Kb = 15;                %Bending modulus; kT
+thickness = 5;          %Membrane thickness; nm
 
 %Define projection properties
 %Universal props
-R = 250;            %Radius of the projection; nm
-l = 5000;           %Protrusion length; nm
+R = 250;                %Radius of the projection; nm
+l = 5000;               %Protrusion length; nm
 %Base/torus props
-ri = [50,100,200,400];           %Radius of the torus tube; nm
-rt = R+ri;        %Dist from torus center to tube center; nm
+rt = [50,100,200,400,600];  %Radius of the torus tube; nm
 %Body props
-lCyl = l-(2*ri);    %Protrusion body length (ie w/o cap or base); nm
+lCyl = l-(2*rt);        %Protrusion body length (ie w/o cap or base); nm
 %Note: cap is hemisphere of radius R => no unique props
 
+%-------------------------------
+% Set up key vars
+%-------------------------------
 %Make our line for moving along the protrusion length
 n = l*2;                %number of bins to split line into
-dz = l/n;               %dist bins step over; nm
 z = linspace(0,l,n);    %array of bins; bin step size l/n nm; units: nm
-z = z(2:n);             %Remove 0 bin to avoid inf problems
+    z = z(2:n);         %Remove 0 bin to avoid inf problems
     %z will be right-side inclusive. Ie bin 2 will cover (l/n,2*l/n]
+Ga = zeros(length(rt),length(z));       %Bending energy/area; kT/nm^2
 
 %-------------------------------
-% Calc base bending E
+% Calc bending E's
 %-------------------------------
-%Dist along protrusion for base (absolute meas)
-zBase = zeros(length(ri)
-zBase = z(1:ceil(ri*n/l));    %units: nm
+%Iterate through ri and calculate the stress profile using each ri val
+for rChoice=1:length(rt)
+    %-------------------------------
+    % Calc base bending E
+    %-------------------------------
+    %Index of z where base ends for ri(rChoice)
+    baseEnd = ceil(rt(rChoice)*n/l);
+    
+    rl = zeros(1,baseEnd);      %Dist b/w protrusion center & sides; nm
+        %Note that this is a fxn of z
+    
+    for a=1:baseEnd
+        rl(a) = R + rt(rChoice)...
+            - (rt(rChoice)*cos(asin((rt(rChoice)-z(a))/rt(rChoice))));
+        
+        %The "stress" (G per unit membrane area) along the base
+        Ga(rChoice,a) = Kb*0.5*(((1/rt(rChoice))+(1/rl(a)))^2);
+    end
+    
+    %-------------------------------
+    % Calc body bending E
+    %-------------------------------
+    %Dist along protrusion for body (abs meas)
+    bodyEnd = ceil(n - (R*n/l));
 
-%Dist b/w protrusion center & sides as fxn of z:
-rl = zeros(length(ri),length(zBase));
-for a=1:length(ri)
-    rl(a,:) = R + ri(a) - (ri(a)*cos(asin((ri(a)-zBase)/ri(a))));
-    drl = -((ri(a)-zBase)/ri(a))...
-        .*((1-((ri(a)-zBase)/ri(a)).^2).^(-0.5)); %d(rl)/dz
+    for a=baseEnd+1:bodyEnd
+        Ga(rChoice,a) = Kb*0.5*((1/R)^2);
+    end
+
+    %-------------------------------
+    % Calc cap bending E
+    %-------------------------------
+    %Dist along protrusion for cap (abs meas)
+    capEnd = n-1;
+    
+    for a=bodyEnd+1:capEnd
+        Ga(rChoice,a) = Kb*2/(R^2);
+    end
 end
-
-%The "stress" (G per unit membrane area) along the base
-sBase = zeros(length(ri),length(zBase));
-sBaseStrip = zeros(length(ri),length(zBase));
-for a=1:length(ri)
-    sBase(a,:) = Kb*0.5*(((1/ri(a))+(1./rl(a,:))).^2);
-    sBaseStrip(a,:) = Kb*0.5*(((1/ri(a))+(1./rl(a,:))).^2)...
-        *pi.*rl(a,:).*sqrt(1+drl.^2)*dz;
-end
-
-%The totaled bending energy of the base
-sBaseSum = sum(sBaseStrip);
-
-%-------------------------------
-% Calc body bending E
-%-------------------------------
-%Dist along protrusion for body (abs meas)
-zBody = z(ceil(ri*n/l)+1:ceil(n - (ri*n/l)));
-
-%The "stress" along the body (note: cylinder => one r is inf)
-sBody = zeros(length(ri),length(zBody));
-sBodyStrip = sBody;
-
-for a=1:length(zBody)
-    sBody(a) = Kb*0.5*((1/R)^2);
-    sBodyStrip(a) = Kb*pi*dz/R;
-end
-
-sBodySum = sum(sBody);
-GBodyTheor = Kb*pi*(l-2*ri)/R;  %Theoretical eq for G of whole body
-
-%-------------------------------
-% Calc cap bending E
-%-------------------------------
-%Dist along protrusion for cap (abs meas)
-zCap = z(ceil(n - (ri*n/l))+1:n-1);
-
-sCap = zeros(1,length(zCap));
-%sCapStrip = sCap;              %I'm going to ignore this for now
-
-for b=1:length(zCap)
-    sCap(b) = Kb*2/(R^2);
-end
-
-GCapTheor = 4*pi*Kb;
 
 %-------------------------------
 % Graph the results
 %-------------------------------
-sFull = [sBase,sBody,sCap];     %G_bend per unit area per strip; kT/(nm^2)
-stressFull = sFull./thickness;  %Stress (E/V) per strip; kT/(nm^3)
+
+% Per 2019-08-07 work (see lab notebook), mechanical tension = bending
+% energy per unit area
 
 figure(1)
-plot(z,sFull,'-b')
+hold on
+for rChoice=1:length(rt)
+    plot(z,Ga(rChoice,:),'DisplayName',"r_t = "+num2str(rt(rChoice))+" nm")
+end
+legend
 xlabel('Distance along protrusion (nm)')
-ylabel('G per unit area (kT/nm^2)')
-
-figure(2)
-plot(z,stressFull,'-r')
-xlabel('Distance along protrusion (nm)')
-ylabel('Stress (kT/nm^3)')
+ylabel('Tension (kT/nm^2)')
+hold off
