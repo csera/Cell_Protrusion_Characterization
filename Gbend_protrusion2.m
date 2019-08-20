@@ -1,4 +1,4 @@
-% Version: 2.0.1      2019-07-10, 2019-08-08
+% Version: 2.1      2019-08-09
 
 % Numerical calculation of membrane protrusion bending stress & energy
 % for an array of torus tube radii
@@ -37,6 +37,7 @@ z = linspace(0,l,n);    %array of bins; bin step size l/n nm; units: nm
     z = z(2:n);         %Remove 0 bin to avoid inf problems
     %z will be right-side inclusive. Ie bin 2 will cover (l/n,2*l/n]
 Ga = zeros(length(rt),length(z));       %Bending energy/area; kT/nm^2
+ETot = zeros(length(rt),3);             %Total bending E's for each seg
 
 %-------------------------------
 % Calc bending E's
@@ -58,6 +59,7 @@ for rChoice=1:length(rt)
         
         %The "stress" (G per unit membrane area) along the base
         Ga(rChoice,a) = Kb*0.5*(((1/rt(rChoice))+(1/rl(a)))^2);
+        ETot(rChoice,1) = ETot(rChoice,1) + Ga(rChoice,a);
     end
     
     %-------------------------------
@@ -68,6 +70,7 @@ for rChoice=1:length(rt)
 
     for a=baseEnd+1:bodyEnd
         Ga(rChoice,a) = Kb*0.5*((1/R)^2);
+        ETot(rChoice,2) = ETot(rChoice,2) + Ga(rChoice,a);
     end
 
     %-------------------------------
@@ -78,6 +81,7 @@ for rChoice=1:length(rt)
     
     for a=bodyEnd+1:capEnd
         Ga(rChoice,a) = Kb*2/(R^2);
+        ETot(rChoice,3) = ETot(rChoice,3) + Ga(rChoice,a);
     end
 end
 
@@ -96,4 +100,28 @@ end
 legend
 xlabel('Distance along protrusion (nm)')
 ylabel('Tension (kT/nm^2)')
+hold off
+
+
+figure(2)
+%Make labels for calculations with each rt
+seriesLabels = strings(length(rt),1);
+for a=1:length(rt)
+    seriesLabels(a) = "rt = "+num2str(rt(a));
+end
+
+hold on
+
+subplot(1,2,1);
+bar(ETot,'stacked');
+set(gca,'XTickLabel',seriesLabels)
+legend('Base','Body','Cap')
+ylabel('Total Segment Force (kT/nm)')
+
+subplot(1,2,2);
+bar(ETot);
+set(gca,'XTickLabel',seriesLabels)      %Apply labels to each bar group
+legend('Base','Body','Cap')
+ylabel('Total Segment Force (kT/nm)')
+
 hold off
