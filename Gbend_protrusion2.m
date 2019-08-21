@@ -1,4 +1,4 @@
-% Version: 2.1      2019-08-09
+% Version: 2.2      2019-08-20
 
 % Numerical calculation of membrane protrusion bending stress & energy
 % for an array of torus tube radii
@@ -23,7 +23,7 @@ thickness = 5;          %Membrane thickness; nm
 R = 250;                %Radius of the projection; nm
 l = 5000;               %Protrusion length; nm
 %Base/torus props
-rt = [50,100,200,400,600];  %Radius of the torus tube; nm
+rt = [50,75,100,125,150,175,200];  %Radius of the torus tube; nm
 %Body props
 lCyl = l-(2*rt);        %Protrusion body length (ie w/o cap or base); nm
 %Note: cap is hemisphere of radius R => no unique props
@@ -54,7 +54,7 @@ for rChoice=1:length(rt)
         %Note that this is a fxn of z
     
     for a=1:baseEnd
-        rl(a) = R + rt(rChoice)...
+        rl(a) = R...
             - (rt(rChoice)*cos(asin((rt(rChoice)-z(a))/rt(rChoice))));
         
         %The "stress" (G per unit membrane area) along the base
