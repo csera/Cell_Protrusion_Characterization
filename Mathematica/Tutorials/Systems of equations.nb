@@ -1,0 +1,258 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8184,        250]
+NotebookOptionsPosition[      6950,        222]
+NotebookOutlinePosition[      7291,        237]
+CellTagsIndexPosition[      7248,        234]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Tutorial: solving systems of equations
+
+Solving systems of equations is simply a matter of defining the system of \
+equations and then plugging that into the Solve[] function
+\tNote that Wolfram syntax for lists is {a,b,{c1,c2},d}
+\tIndividual elements are referenced via [[index]]\
+\>", "Text",
+ CellChangeTimes->{{3.769544420642215*^9, 
+  3.769544551470147*^9}},ExpressionUUID->"f222c05b-651a-4f2c-8893-\
+f5083523ae1a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"sys", " ", "=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "+", "y", "+", "z"}], "==", "0"}], ",", 
+    RowBox[{
+     RowBox[{"x", "/", "y"}], "==", "3"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "^", "2"}], "+", "z"}], "==", "4"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{"sys", ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.769544560171421*^9, 3.7695446578875556`*^9}, {
+  3.769544699281251*^9, 3.769544704005123*^9}, {3.769544765084816*^9, 
+  3.7695447816749473`*^9}, {3.7695451687574077`*^9, 3.7695451774062943`*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"c9e7c66a-1fc5-48e1-9bf1-e9c7e810a140"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"x", "+", "y", "+", "z"}], "\[Equal]", "0"}], ",", 
+   RowBox[{
+    FractionBox["x", "y"], "\[Equal]", "3"}], ",", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["x", "2"], "+", "z"}], "\[Equal]", "4"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.769545179124498*^9},
+ CellLabel->"Out[23]=",ExpressionUUID->"46d6ad3d-1b04-4026-8a8a-65131225e8c3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       FractionBox["2", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         SqrtBox["10"]}], ")"}]}]}], ",", 
+     RowBox[{"y", "\[Rule]", 
+      RowBox[{
+       FractionBox["2", "9"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         SqrtBox["10"]}], ")"}]}]}], ",", 
+     RowBox[{"z", "\[Rule]", 
+      RowBox[{
+       FractionBox["8", "9"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         SqrtBox["10"]}], ")"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       FractionBox["2", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SqrtBox["10"]}], ")"}]}]}], ",", 
+     RowBox[{"y", "\[Rule]", 
+      RowBox[{
+       FractionBox["2", "9"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SqrtBox["10"]}], ")"}]}]}], ",", 
+     RowBox[{"z", "\[Rule]", 
+      RowBox[{
+       FractionBox["8", "9"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "-", 
+         SqrtBox["10"]}], ")"}]}]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7695451791935143`*^9},
+ CellLabel->"Out[24]=",ExpressionUUID->"2b542a1b-677b-483e-92de-8d0dce72e01a"]
+}, Open  ]],
+
+Cell["\<\
+
+OK, now let\[CloseCurlyQuote]s try to do this with a reusable equation taking \
+different values for its args\
+\>", "Text",
+ CellChangeTimes->{{3.7697994295662365`*^9, 
+  3.769799463132246*^9}},ExpressionUUID->"c4c836a4-cee8-40b1-973a-\
+b7e4137dcb7b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", 
+     RowBox[{"x_", ",", "y_", ",", "k_"}], "]"}], ":=", " ", 
+    RowBox[{
+     RowBox[{"x", "+", "y"}], "==", "k"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sys", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"1", ",", "2", ",", "k1"}], "]"}], ",", 
+     RowBox[{"f", "[", 
+      RowBox[{"1", ",", "1", ",", "k2"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{"sys", ",", 
+   RowBox[{"{", 
+    RowBox[{"k1", ",", "k2"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7697994754246626`*^9, 3.7697994884053144`*^9}, {
+  3.7697995373116455`*^9, 3.7697995495834894`*^9}, {3.769799630717963*^9, 
+  3.769799696693421*^9}, {3.7697998032851024`*^9, 3.7697998096742687`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"74f18676-35b8-419d-b31f-36126b6ab7f8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"k1", "\[Rule]", "3"}], ",", 
+    RowBox[{"k2", "\[Rule]", "2"}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.769799698208723*^9, 3.7697998110020275`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"1ce80afd-173e-4ad1-a5df-80b5e3b049b0"]
+}, Open  ]],
+
+Cell["\<\
+Great! Now let\[CloseCurlyQuote]s do this for something more symbolic. Say we \
+have a system of equations that we\[CloseCurlyQuote]re setting to be all \
+equal to the same unknown value\
+\>", "Text",
+ CellChangeTimes->{{3.7697998350125313`*^9, 
+  3.769799875836117*^9}},ExpressionUUID->"06e85390-c666-4cbc-8b49-\
+f1ed56e276c4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"g", "[", 
+     RowBox[{"x_", ",", "y_", ",", "z_", ",", "k"}], "]"}], ":=", " ", 
+    RowBox[{
+     RowBox[{"x", "+", "y", "+", "z"}], "\[Equal]", "k"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sys", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"g", "[", 
+      RowBox[{"1", ",", "1", ",", "z1", ",", "k"}], "]"}], ",", 
+     RowBox[{"g", "[", 
+      RowBox[{"1", ",", "2", ",", "z2", ",", "k"}], "]"}], ",", 
+     RowBox[{"g", "[", 
+      RowBox[{"1", ",", "1", ",", "z3", ",", "k"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{"sys", ",", 
+   RowBox[{"{", 
+    RowBox[{"z1", ",", "z2", ",", "z3"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.769799832641163*^9, 3.7697998335564585`*^9}, {
+  3.7697998790696073`*^9, 3.769799997803651*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"19239bb2-63fd-46b4-b0ae-f6b1ac748690"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"z1", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "2"}], "+", "k"}]}], ",", 
+    RowBox[{"z2", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "3"}], "+", "k"}]}], ",", 
+    RowBox[{"z3", "\[Rule]", 
+     RowBox[{
+      RowBox[{"-", "2"}], "+", "k"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.7697999608514433`*^9, 3.7697999995063705`*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"7a28ef2b-9b1a-44a3-97f7-0326784b3ad3"]
+}, Open  ]]
+},
+WindowSize->{682, 820},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 431, 10, 144, "Text",ExpressionUUID->"f222c05b-651a-4f2c-8893-f5083523ae1a"],
+Cell[CellGroupData[{
+Cell[1014, 34, 757, 19, 48, "Input",ExpressionUUID->"c9e7c66a-1fc5-48e1-9bf1-e9c7e810a140"],
+Cell[1774, 55, 410, 12, 50, "Output",ExpressionUUID->"46d6ad3d-1b04-4026-8a8a-65131225e8c3"],
+Cell[2187, 69, 1336, 46, 85, "Output",ExpressionUUID->"2b542a1b-677b-483e-92de-8d0dce72e01a"]
+}, Open  ]],
+Cell[3538, 118, 262, 7, 56, "Text",ExpressionUUID->"c4c836a4-cee8-40b1-973a-b7e4137dcb7b"],
+Cell[CellGroupData[{
+Cell[3825, 129, 941, 25, 86, "Input",ExpressionUUID->"74f18676-35b8-419d-b31f-36126b6ab7f8"],
+Cell[4769, 156, 305, 7, 32, "Output",ExpressionUUID->"1ce80afd-173e-4ad1-a5df-80b5e3b049b0"]
+}, Open  ]],
+Cell[5089, 166, 338, 7, 56, "Text",ExpressionUUID->"06e85390-c666-4cbc-8b49-f1ed56e276c4"],
+Cell[CellGroupData[{
+Cell[5452, 177, 985, 26, 86, "Input",ExpressionUUID->"19239bb2-63fd-46b4-b0ae-f6b1ac748690"],
+Cell[6440, 205, 494, 14, 32, "Output",ExpressionUUID->"7a28ef2b-9b1a-44a3-97f7-0326784b3ad3"]
+}, Open  ]]
+}
+]
+*)
+

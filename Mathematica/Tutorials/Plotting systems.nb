@@ -1,0 +1,214 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9076,        206]
+NotebookOptionsPosition[      8367,        187]
+NotebookOutlinePosition[      8708,        202]
+CellTagsIndexPosition[      8665,        199]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+   RowBox[{"x", "*", 
+    RowBox[{"y", "^", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sys", " ", "=", " ", 
+   RowBox[{"Total", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"1", ",", "a"}], "]"}], ",", 
+      RowBox[{"f", "[", 
+       RowBox[{"2", ",", "a"}], "]"}], ",", 
+      RowBox[{"f", "[", 
+       RowBox[{"3", ",", "a"}], "]"}]}], "}"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"aMax", " ", "=", " ", "10"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "find", " ", "the", " ", "values", " ", "of", " ", "the", " ", "summed", 
+    " ", "system", " ", 
+    RowBox[{"from", " ", "[", 
+     RowBox[{"0", ",", "aMax"}], "]"}], " ", "in", " ", "20", " ", "even", 
+    " ", "steps"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"test", " ", "=", " ", 
+  RowBox[{"Table", "[", 
+   RowBox[{"sys", ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0", ",", "aMax", ",", 
+      RowBox[{"aMax", "/", "20"}]}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"domain", " ", "=", " ", 
+    RowBox[{"Subdivide", "[", 
+     RowBox[{"0", ",", "10", ",", "20"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", "test", "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.7698682134976044`*^9, 3.769868368670348*^9}, {
+  3.7698684518692045`*^9, 3.7698684596759944`*^9}, {3.769868555944581*^9, 
+  3.7698685712537*^9}, {3.769869027895068*^9, 3.7698690596522408`*^9}, {
+  3.7698698960129633`*^9, 3.7698699091856203`*^9}, {3.7698699405828886`*^9, 
+  3.769869948230132*^9}, {3.7698699790501795`*^9, 3.7698700829531837`*^9}, {
+  3.7698744650526686`*^9, 3.7698744784653997`*^9}, {3.7698745448630724`*^9, 
+  3.769874547481375*^9}, {3.769874578932266*^9, 
+  3.769874634012515*^9}},ExpressionUUID->"fb1b18e7-3b9d-4525-8acc-\
+bb4d4a049016"],
+
+Cell[BoxData[
+ RowBox[{"6", " ", 
+  SuperscriptBox["a", "2"]}]], "Output",
+ CellChangeTimes->{{3.7698684382743793`*^9, 3.769868460647188*^9}, {
+   3.7698685666824636`*^9, 3.769868571857977*^9}, {3.7698690365638194`*^9, 
+   3.769869053090946*^9}, 3.769869911295253*^9, 3.7698700163874435`*^9, 
+   3.7698744793130865`*^9, 3.769874548340543*^9, {3.7698745989798727`*^9, 
+   3.7698746306453524`*^9}},
+ CellLabel->
+  "Out[172]=",ExpressionUUID->"79916366-503f-4cd1-9c15-371dd8cb9750"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   FractionBox["3", "2"], ",", "6", ",", 
+   FractionBox["27", "2"], ",", "24", ",", 
+   FractionBox["75", "2"], ",", "54", ",", 
+   FractionBox["147", "2"], ",", "96", ",", 
+   FractionBox["243", "2"], ",", "150", ",", 
+   FractionBox["363", "2"], ",", "216", ",", 
+   FractionBox["507", "2"], ",", "294", ",", 
+   FractionBox["675", "2"], ",", "384", ",", 
+   FractionBox["867", "2"], ",", "486", ",", 
+   FractionBox["1083", "2"], ",", "600"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7698684382743793`*^9, 3.769868460647188*^9}, {
+   3.7698685666824636`*^9, 3.769868571857977*^9}, {3.7698690365638194`*^9, 
+   3.769869053090946*^9}, 3.769869911295253*^9, 3.7698700163874435`*^9, 
+   3.7698744793130865`*^9, 3.769874548340543*^9, {3.7698745989798727`*^9, 
+   3.7698746306765556`*^9}},
+ CellLabel->
+  "Out[174]=",ExpressionUUID->"e9ce7990-3ff2-4dba-bd7e-deb3d1299a81"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ListPlot","nonopt",
+   "\"Options expected (instead of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", FractionBox[\\\"3\\\", \\\"2\\\"], \\\",\\\", \
+\\\"6\\\", \\\",\\\", FractionBox[\\\"27\\\", \\\"2\\\"], \\\",\\\", \\\"24\\\
+\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\"], \\\",\\\", \\\"54\\\", \
+\\\",\\\", FractionBox[\\\"147\\\", \\\"2\\\"], \\\",\\\", \\\"96\\\", \
+\\\",\\\", FractionBox[\\\"243\\\", \\\"2\\\"], \\\",\\\", \\\"150\\\", \\\",\
+\\\", FractionBox[\\\"363\\\", \\\"2\\\"], \\\",\\\", \\\"216\\\", \\\",\\\", \
+FractionBox[\\\"507\\\", \\\"2\\\"], \\\",\\\", \\\"294\\\", \\\",\\\", \
+FractionBox[\\\"675\\\", \\\"2\\\"], \\\",\\\", \\\"384\\\", \\\",\\\", \
+FractionBox[\\\"867\\\", \\\"2\\\"], \\\",\\\", \\\"486\\\", \\\",\\\", \
+FractionBox[\\\"1083\\\", \\\"2\\\"], \\\",\\\", \\\"600\\\"}], \
+\\\"}\\\"}]\\)) beyond position \\!\\(\\*RowBox[{\\\"1\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"ListPlot\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
+\\\"1\\\", \\\",\\\", FractionBox[\\\"3\\\", \\\"2\\\"], \\\",\\\", \
+\\\"2\\\", \\\",\\\", FractionBox[\\\"5\\\", \\\"2\\\"], \\\",\\\", \
+\\\"3\\\", \\\",\\\", FractionBox[\\\"7\\\", \\\"2\\\"], \\\",\\\", \
+\\\"4\\\", \\\",\\\", FractionBox[\\\"9\\\", \\\"2\\\"], \\\",\\\", \
+\\\"5\\\", \\\",\\\", FractionBox[\\\"11\\\", \\\"2\\\"], \\\",\\\", \
+\\\"6\\\", \\\",\\\", FractionBox[\\\"13\\\", \\\"2\\\"], \\\",\\\", \
+\\\"7\\\", \\\",\\\", FractionBox[\\\"15\\\", \\\"2\\\"], \\\",\\\", \
+\\\"8\\\", \\\",\\\", FractionBox[\\\"17\\\", \\\"2\\\"], \\\",\\\", \
+\\\"9\\\", \\\",\\\", FractionBox[\\\"19\\\", \\\"2\\\"], \\\",\\\", \\\"10\\\
+\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
+\\\",\\\", FractionBox[\\\"3\\\", \\\"2\\\"], \\\",\\\", \\\"6\\\", \
+\\\",\\\", FractionBox[\\\"27\\\", \\\"2\\\"], \\\",\\\", \\\"24\\\", \\\",\\\
+\", FractionBox[\\\"75\\\", \\\"2\\\"], \\\",\\\", \\\"54\\\", \\\",\\\", \
+FractionBox[\\\"147\\\", \\\"2\\\"], \\\",\\\", \\\"96\\\", \\\",\\\", \
+FractionBox[\\\"243\\\", \\\"2\\\"], \\\",\\\", \\\"150\\\", \\\",\\\", \
+FractionBox[\\\"363\\\", \\\"2\\\"], \\\",\\\", \\\"216\\\", \\\",\\\", \
+FractionBox[\\\"507\\\", \\\"2\\\"], \\\",\\\", \\\"294\\\", \\\",\\\", \
+FractionBox[\\\"675\\\", \\\"2\\\"], \\\",\\\", \\\"384\\\", \\\",\\\", \
+FractionBox[\\\"867\\\", \\\"2\\\"], \\\",\\\", \\\"486\\\", \\\",\\\", \
+FractionBox[\\\"1083\\\", \\\"2\\\"], \\\",\\\", \\\"600\\\"}], \
+\\\"}\\\"}]}], \\\"]\\\"}]\\). An option must be a rule or a list of \
+rules.\"",2,176,23,31122793992107020296,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.769874630692177*^9},
+ CellLabel->
+  "During evaluation of \
+In[171]:=",ExpressionUUID->"4f1eca7a-2856-4a98-92d2-e19e7263008f"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     FractionBox["1", "2"], ",", "1", ",", 
+     FractionBox["3", "2"], ",", "2", ",", 
+     FractionBox["5", "2"], ",", "3", ",", 
+     FractionBox["7", "2"], ",", "4", ",", 
+     FractionBox["9", "2"], ",", "5", ",", 
+     FractionBox["11", "2"], ",", "6", ",", 
+     FractionBox["13", "2"], ",", "7", ",", 
+     FractionBox["15", "2"], ",", "8", ",", 
+     FractionBox["17", "2"], ",", "9", ",", 
+     FractionBox["19", "2"], ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     FractionBox["3", "2"], ",", "6", ",", 
+     FractionBox["27", "2"], ",", "24", ",", 
+     FractionBox["75", "2"], ",", "54", ",", 
+     FractionBox["147", "2"], ",", "96", ",", 
+     FractionBox["243", "2"], ",", "150", ",", 
+     FractionBox["363", "2"], ",", "216", ",", 
+     FractionBox["507", "2"], ",", "294", ",", 
+     FractionBox["675", "2"], ",", "384", ",", 
+     FractionBox["867", "2"], ",", "486", ",", 
+     FractionBox["1083", "2"], ",", "600"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.7698684382743793`*^9, 3.769868460647188*^9}, {
+   3.7698685666824636`*^9, 3.769868571857977*^9}, {3.7698690365638194`*^9, 
+   3.769869053090946*^9}, 3.769869911295253*^9, 3.7698700163874435`*^9, 
+   3.7698744793130865`*^9, 3.769874548340543*^9, {3.7698745989798727`*^9, 
+   3.76987463073904*^9}},
+ CellLabel->
+  "Out[176]=",ExpressionUUID->"2d8c135a-8856-4ebd-be79-3297c74322ae"]
+}, Open  ]]
+},
+WindowSize->{682, 820},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2029, 50, 200, "Input",ExpressionUUID->"fb1b18e7-3b9d-4525-8acc-bb4d4a049016"],
+Cell[2612, 74, 479, 9, 32, "Output",ExpressionUUID->"79916366-503f-4cd1-9c15-371dd8cb9750"],
+Cell[3094, 85, 920, 19, 85, "Output",ExpressionUUID->"e9ce7990-3ff2-4dba-bd7e-deb3d1299a81"],
+Cell[4017, 106, 2848, 43, 167, "Message",ExpressionUUID->"4f1eca7a-2856-4a98-92d2-e19e7263008f"],
+Cell[6868, 151, 1483, 33, 121, "Output",ExpressionUUID->"2d8c135a-8856-4ebd-be79-3297c74322ae"]
+}, Open  ]]
+}
+]
+*)
+
