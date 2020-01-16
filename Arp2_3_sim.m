@@ -1,6 +1,6 @@
 % SIMULATING ARP2/3 ABM TRAJECTORIES
 % Curtis Sera, Welch Lab
-% v1.0, 2020-01-13
+% v1.1, 2020-01-15
 
 % Motivation: Bp utilizes the Ena/VASP machinery for ABM and thus produces 
 % straight tails.  However, Bt utilizes the branching Arp2/3 machinery, and
@@ -19,8 +19,11 @@
 % This first-pass will only look at nSims runs of an isolated filament in a
 % 2D plane
 
+clear all
+close all
+
 % Assumed model params
-PArp = [0.001; 0.01; 0.1; 0.3;0.8];
+PArp = [0.001; 0.01; 0.1; 0.3;0.8;0.95];
     %P that Arp2/3 is added in rather than a new actin monomer
 pRuns = size(PArp,1);
 PRt = 0.5;      %P that Arp2/3 addition makes turn "right"
@@ -37,9 +40,16 @@ x = zeros(tEnd,nSims,pRuns);      %x coordinate
 y = zeros(tEnd,nSims,pRuns);      %y coordinate
 arp = rand(tEnd,nSims,pRuns);     %Arp2/3 added if arp(t} <= PArp
 
+rmsX = zeros(tEnd,pRuns);
+rmsY = zeros(tEnd,pRuns);
+mX = zeros(tEnd,pRuns);
+mY = zeros(tEnd,pRuns);
+
+%For pRun, iterate at each time point through all the sims to get new
+%positions
 for p=1:pRuns
-    for n=1:nSims 
-        for t=2:tEnd
+    for t=2:tEnd 
+        for n=1:nSims
             %First adjust elongation angle as appropriate
             if arp(t,n,p)<= PArp(p)
                 RL = rand;
@@ -56,25 +66,31 @@ for p=1:pRuns
             y(t,n,p) = y(t-1,n,p) + LAct*sin(a(t,n,p) * pi/180);
 
         end
+        
+        %Get RMS of this time point
+        rmsX(t,p) = sqrt(mean(x(t,:,p).^2));
+        rmsY(t,p) = sqrt(mean(y(t,:,p).^2));
+        
+        %Get mean of this time point
+        mX(t,p) = mean(x(t,:,p));
+        mY(t,p) = mean(y(t,:,p));
+        
     end
 end
 
-figure(1)
-plot(x(:,:,1),y(:,:,1),'k')
-title("PArp = "+PArp(1))
+%Plot results
+colors = {'r','m','y','g','c','b'};
 
-figure(2)
-plot(x(:,:,2),y(:,:,2),'r')
-title("PArp = "+PArp(2))
+for p=1:pRuns
+    figure(p)
+    hold on
+    simsPlot = plot(x(:,:,p),y(:,:,p),'Color',colors{p});
+    rmsSimsPlot = plot(rmsX(:,p),rmsY(:,p),'k','LineWidth',2,...
+        'DisplayName','RMS position');
+    mSimsPlot = plot(mX(:,p),mY(:,p),':k','LineWidth',2,...
+        'DisplayName','Mean position');
+    title("PArp = "+PArp(p))
+    lgd = legend([rmsSimsPlot,mSimsPlot]);
+    lgd.Location = 'southwest';
+end
 
-figure(3)
-plot(x(:,:,3),y(:,:,3),'g')
-title("PArp = "+PArp(3))
-
-figure(4)
-plot(x(:,:,4),y(:,:,4),'c')
-title("PArp = "+PArp(4))
-
-figure(5)
-plot(x(:,:,5),y(:,:,5),'b')
-title("PArp = "+PArp(5))
