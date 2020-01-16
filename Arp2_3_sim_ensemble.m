@@ -1,6 +1,6 @@
 % SIMULATING ARP2/3 ABM TRAJECTORIES
 % Curtis Sera, Welch Lab
-% v1.0, 2020-01-16
+% v1.1, 2020-01-16
 %
 % This code is adapted from Arp2_3_sim.m v1.1
 % 
@@ -51,6 +51,7 @@ rmsX = zeros(tEnd,pRuns);
 rmsY = zeros(tEnd,pRuns);
 mX = zeros(tEnd,pRuns);
 mY = zeros(tEnd,pRuns);
+mA = zeros(tEnd,pRuns);
 
 %For pRun, iterate at each time point through all the sims to get new
 %positions
@@ -81,6 +82,7 @@ for p=1:pRuns
         %Get mean of this time point
         mX(t,p) = mean(x(t,:,p));
         mY(t,p) = mean(y(t,:,p));
+        mA(t,p) = mean(a(t,:,p));
         
     end
 end
@@ -92,7 +94,7 @@ figure(1)
 hold on
 for p=1:pRuns
     plot(rmsX(:,p),rmsY(:,p),'k','Color',colors{p},'LineWidth',2,...
-        'DisplayName',"RMS path, P = "+num2str(PArp(p)));
+        'DisplayName',"P = "+num2str(PArp(p)));
 end
 title("RMS paths")
 lgd = legend();
@@ -103,9 +105,21 @@ figure(2)
 hold on
 for p=1:pRuns
     plot(mX(:,p),mY(:,p),':k','Color',colors{p},'LineWidth',2,...
-        'DisplayName',"Mean path, P = "+num2str(PArp(p)));
+        'DisplayName',"P = "+num2str(PArp(p)));
 end
 title("Mean paths")
+lgd = legend();
+lgd.Location = 'northwest';
+hold off
+
+figure(3)
+hold on
+times = 1:1000;
+for p=1:pRuns
+    plot(times,mA(:,p),'k','Color',colors{p},'LineWidth',2,...
+        'DisplayName',"P = "+num2str(PArp(p)));
+end
+title("Mean path angle (rads)")
 lgd = legend();
 lgd.Location = 'northwest';
 hold off
