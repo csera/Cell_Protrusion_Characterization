@@ -1,6 +1,6 @@
 % SIMULATING ARP2/3 ABM TRAJECTORIES
 % Curtis Sera, Welch Lab
-% v1.1, 2020-01-16
+% v1.2, 2020-01-16
 %
 % This code is adapted from Arp2_3_sim.m v1.1
 % 
@@ -53,6 +53,7 @@ mX = zeros(tEnd,pRuns);
 mY = zeros(tEnd,pRuns);
 mA = zeros(tEnd,pRuns);
 
+%Simulation w/ concurrent mean path, RMS path, and mean angle calculation
 %For pRun, iterate at each time point through all the sims to get new
 %positions
 for p=1:pRuns
@@ -87,13 +88,33 @@ for p=1:pRuns
     end
 end
 
-%Plot results
+% Calculate the 2x 'derivative' of mA over time to see how curvy paths are
+% Note that finding slopes is simplified by the fact that I'm taking uniform
+% time steps of size 1 --> only have to subtract mA's
+% Need to be careful with time values since you lose 1 time value for each
+% discrete 'derivative' that you take. (The values are avgs and thus fall
+% between times.)
+dmA = zeros(tEnd,pRuns);
+ddmA = zeros(tEnd,pRuns);
+
+for p=1:pRuns
+    %Find the 1st derivative. Shift times back by half a step
+    for t=1:tEnd-1
+        dmA(t,p) = mA(t+1,p) - mA(t,p);
+    end
+    %Find the 2nd derivative. Times from dmA already match this
+    for t=2:tEnd-1
+        ddmA(t,p) = dmA(t,p) - dmA(t-1,p);
+    end
+end
+
+%Plot the paths
 colors = {'r','m','y','g','c','b'};
 
 figure(1)
 hold on
 for p=1:pRuns
-    plot(rmsX(:,p),rmsY(:,p),'k','Color',colors{p},'LineWidth',2,...
+    plot(rmsX(:,p),rmsY(:,p),'k','Color',colors{p},'LineWidth',1,...
         'DisplayName',"P = "+num2str(PArp(p)));
 end
 title("RMS paths")
@@ -104,7 +125,7 @@ hold off
 figure(2)
 hold on
 for p=1:pRuns
-    plot(mX(:,p),mY(:,p),':k','Color',colors{p},'LineWidth',2,...
+    plot(mX(:,p),mY(:,p),'k','Color',colors{p},'LineWidth',1,...
         'DisplayName',"P = "+num2str(PArp(p)));
 end
 title("Mean paths")
@@ -116,10 +137,36 @@ figure(3)
 hold on
 times = 1:1000;
 for p=1:pRuns
-    plot(times,mA(:,p),'k','Color',colors{p},'LineWidth',2,...
+    plot(times,mA(:,p),'Color',colors{p},'LineWidth',1,...
         'DisplayName',"P = "+num2str(PArp(p)));
 end
 title("Mean path angle (rads)")
+lgd = legend();
+lgd.Location = 'northwest';
+hold off
+
+%Plot the path angles and related stuff
+times = 1:tEnd;
+
+figure(4)
+hold on
+%Count down so that the bigger PArp curves don't obscure the smaller ones
+for p=pRuns:-1:1
+    plot(times,dmA(:,p),'Color',colors{p},'LineWidth',1,...
+        'DisplayName',"P = "+num2str(PArp(p)));
+end
+title("1st derivative of mean path angle (rads)")
+lgd = legend();
+lgd.Location = 'northwest';
+hold off
+
+figure(5)
+hold on
+for p=pRuns:-1:1
+    plot(times,ddmA(:,p),'Color',colors{p},'LineWidth',1,...
+        'DisplayName',"P = "+num2str(PArp(p)));
+end
+title("2nd derivative of mean path angle (rads)")
 lgd = legend();
 lgd.Location = 'northwest';
 hold off
