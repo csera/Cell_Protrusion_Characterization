@@ -37,7 +37,7 @@ LAct = 1;       %length added by addition of actin monomer
 ArpAng = 70 * pi/180;       %Angle deviation in rad caused by Arp2/3
 
 % Sim settings
-tEnd = 1000;    %# time steps
+tEnd = 4000;    %# time steps
 nSims = 250;    %# of runs to simulate
     % Bt width/f-actin diameter ~= 500 nm/2 nm = 250 f-actin
 
@@ -146,7 +146,7 @@ hold off
 % Plot mean path angle *over time*
 figure(3)
 hold on
-times = 1:1000;
+times = 1:tEnd;
 for p=1:pRuns
     plot(times,mA(:,p),'Color',colors{p},'LineWidth',1,...
         'DisplayName',"P = "+num2str(PArp(p)));
