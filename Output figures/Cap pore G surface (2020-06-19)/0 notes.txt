@@ -1,0 +1,14 @@
+This was done using v2.1.0 of FusionPoreExpanG.ipynb
+
+Note that the plots directly comparing a cap pore vs a flat pore depict the 
+"grounded" energies.  That is, the surfaces were both shifted such that their 
+minimum energies once the pore has formed (ie r>0) are both = 0.  This allows
+more effective and direct comparison of their shapes and scale of slopes which is
+really what we're interested in.
+In the direct comparison surfaces, the blue hues surface is the flat pore, and 
+the orange hues surface is the cap pore. Also note that the flat pore has been 
+shifted up by 5 kT to make both surfaces visible. (They would overlap almost 
+perfectly otherwise.)
+
+I'm pretty sure that chatter in "Cap v flat pore - net G min paths restr dom.png" 
+is simply from floating point rounding errors.
