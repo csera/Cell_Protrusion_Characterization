@@ -1,0 +1,5 @@
+Changes from v3.0 -> 3.1
+Corrected the formula for calculating kappaT.  
+Had been using the angle measured from the transverse plane with 0 
+oriented inward.  Should have had 0 oriented outward.
+Fixed so that it now uses the compliment (ie pi - the calculated angle)

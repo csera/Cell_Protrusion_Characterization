@@ -1,0 +1,14 @@
+Change from v1.2:
+Using Kb = 15 kT instead of 10 kT to make consistent w/ value used
+in rest of paper
+
+For imgs not comparing against ABM:
+blue = hydration pressure
+yellow = undulation pressure (either according to Helfrich's eq or Rand's eq)
+green = van der Waals attraction pressure
+orange = net intermembrane interaction
+
+For vs ABM imgs:
+Blue = net intermembrane interaction 
+	(using either Helfrich's eq or Rand's eq for undulation pressure)
+Yellow = ABM pressure
