@@ -1,0 +1,14 @@
+Adapted from "Membrane approach 3.nb" - ie v1.3 of my computations 
+of membrane interaction pressures in Mathematica
+	Made using MembrApproach.py v1.0
+
+Did this adaptation to a) have it in a non-proprietary language and b)
+be able to more easily tweak the plot settings
+
+The math is exactly the same as in the Mathematica nb except:
+- Only the Rand undulation pressure is computed
+	-Rand RP, Parsegian VA. Hydration forces between 
+		phospholipid bilayers. Biochim Biophys Acta BBA - Rev 
+		Biomembr. 1989;988(3):351-376. 
+		doi:10.1016/0304-4157(89)90010-5
+- The code now explicitly defines the points to compute values at
