@@ -1,5 +1,5 @@
 # Curtis Sera
-# 2020-09-14, v1.0
+# 2020-09-15, v1.1
 # 
 # Adaptation of my Mathematica "Membrane approach 3.nb" to something that is 
 # open source and has easier graphics editing options
@@ -82,7 +82,7 @@ for x in range(0,n):
     
     Ptot[x] = Ph[x]+Pu[x]+Pv[x]
     
-    Pabm[x] = 3.565e5 # Upper bound est done by hand on 2019-06-11; Pa
+    Pabm[x] = 3.99e5 # Upper bound est done by hand on 2019-06-11; Pa
 
 # Plot over whole domain (0,dMax]
 plotDflt = go.Figure()
@@ -156,7 +156,7 @@ plotCeilVAbm.update_layout(title="Bilayer Interactions vs ABM",
                            ticktext=[0,2,4,6,8,10,12,14]
                        ),
                        xaxis_title="d (m)", yaxis_title="Pressure (Pa)")
-plotCeilVAbm.update_yaxes(range=[-3000,4e5])
+plotCeilVAbm.update_yaxes(range=[-3000,5e5])
 plotCeilVAbm.show()
 
 # Plot over a restricted range vs ABM pressure isolating the net interaction and ABM
@@ -174,5 +174,5 @@ plotCeilVAbmIso.update_layout(title="Bilayer Interactions vs ABM",
                            ticktext=[0,2,4,6,8,10,12,14]
                        ),
                        xaxis_title="d (m)", yaxis_title="Pressure (Pa)")
-plotCeilVAbmIso.update_yaxes(range=[-3000,4e5])
+plotCeilVAbmIso.update_yaxes(range=[-3000,5e5])
 plotCeilVAbmIso.show()

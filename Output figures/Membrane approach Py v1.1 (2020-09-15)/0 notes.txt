@@ -1,0 +1,9 @@
+Change from v1.0 of MembrApproach.py:
+Updated Pabm (pressure from ABM) upper limit estimate according to 
+calculation in lab notes from 2020-09-15.  
+Value of Pabm 3.565e5 --> 3.99e5
+- Due to changes in estimated radii of the protrusion (240 nm --> 400 nm)
+	and the input radius for actin (2.5 nm --> 3 nm) to make it more
+	consistent w/ the images and thus my other calculations
+Also, updated plotted ranges to account for the slightly increased Pabm
+
