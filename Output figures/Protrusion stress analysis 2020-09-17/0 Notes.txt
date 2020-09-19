@@ -1,0 +1,10 @@
+Changes from v3.1
+I had defined the angle in the Cos() wrong again...
+To compensate for using the bottom half of the torus when the (+) dir
+of the angle defined in Kobayashi's Diff Geom was toward the "top half",
+I had been doing \pi - arcsin(f(z)).
+However, this was not what I wanted and was giving results that didn't
+square w/ sanity checks against the fact that the narrower part should
+have greater curvature.
+The angle in the cos() is now defined by simply taking -arcsin(f(z)).
+	The plots now square w/ the above sanity check
