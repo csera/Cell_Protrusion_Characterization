@@ -1,6 +1,6 @@
-Done using BaseFusionPrePost.ipynb v1.1
+Done using BaseFusionPrePost.ipynb v1.1.1
 
-Changes:
+Changes from 1.0:
 - Fixed computations using the actual torus curvature (prev "Method 1")
 	- Needed to array index zRim, rim_rt, and all dependent arrays
 	- Solution now converges as the zRim resolution is increased 
