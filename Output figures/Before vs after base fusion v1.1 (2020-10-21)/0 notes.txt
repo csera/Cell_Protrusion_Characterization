@@ -1,0 +1,13 @@
+Done using BaseFusionPrePost.ipynb v1.1
+
+Changes:
+- Fixed computations using the actual torus curvature (prev "Method 1")
+	- Needed to array index zRim, rim_rt, and all dependent arrays
+	- Solution now converges as the zRim resolution is increased 
+		(left at 100 steps over each zRim range which seemed sufficient)
+- Removed "Method 2" since the first approach now works
+
+Still in question:
+- NOTE: This solution for post-fusion energy only includes the protrusion's
+	new toroidal rim.  It does NOT include the new fusion pore.  I've 
+	emailed Christoph to see what he thinks.
