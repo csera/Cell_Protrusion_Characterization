@@ -1,0 +1,4 @@
+Done using CapFusionPrePost.ipynb v1.0
+
+Direct adaptation of BaseFusionPrePost.ipynb v1.1.1
+Changed only the pre-fusion calculations and the plot annotations.
