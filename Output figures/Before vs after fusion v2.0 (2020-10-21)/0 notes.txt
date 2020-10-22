@@ -1,0 +1,10 @@
+Code used:
+CapFusionPrePost.ipynb	v2.0 - computes Gb change in cap
+BodyFusionPrePost.ipynb	v2.0 - computes Gb change in body
+BaseFusionPrePost.ipynb	v2.0 - computes Gb change in base
+FusionPrePostPlot.py	v1.0 - plots results of the above 3 scripts
+
+Data output from the first three are copied in the "Data" subfolder here, 
+and these data were fed into FusionPrePostPlot.py.
+Graphs from all four are saved as .png files here.  "Compiled... .png" files
+are from FusionPrePostPlot.py
