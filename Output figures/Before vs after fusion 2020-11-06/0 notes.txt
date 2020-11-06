@@ -1,0 +1,32 @@
+Done using...
+BaseFusionPrePost.ipynb v2.1.1
+BodyFusionPrePost.ipynb v2.0.4
+CapFusionPrePost.ipynb v2.0.4
+
+-----------------------------------------
+- Base fusion notes			-
+-----------------------------------------
+"Postfusion rims Gs.png" shows the bending energies of the...
+- rim formed on the protrusion that was just cut off
+- rim formed on the bulk side that is basically a fusion pore now
+	- calculated both via Kozlov 1989 and via my Reimann sum method
+
+To get GPost, the fusion pore energy is now added to the protrusion rim Gb
+- done using only my solution to the pore Gb
+
+The min path on the DGb surface is recognized by simple inspection to be the one
+going along one of the edges where either the protrusion rim rt or the pore rim
+rt is at a max.  Since it seems more reasonable to let the fusion pore rt be 
+huge than the protrusion remnant's and to keep it consistent w/ the other
+segments' plots, I chose to take the min path as Gb vs portrusion rim rt with
+pore rt held constant at its max.
+
+Of note for the compilation too, this now looks at rim_rt with finer spacing.
+Rather than using a list of manually defined rim_rt's, this now uses 
+numpy.linspace() to generate 100 pts b/w 2-45 nm
+
+-----------------------------------------
+- Body & Cap notes			-
+-----------------------------------------
+No changes to backend of code.  Only changed these so that they can export figs 
+properly with the markdown.
