@@ -1,11 +1,12 @@
 # Curtis Sera
-# v1.0 for 
+# v1.1 for 
 #    v2.0 of CapFusionPrePost and BodyFusionPrePost
 #    v2.1 of BaseFusionPrePost
 # 2020-10-21
 
 import numpy as np
 import plotly.graph_objs as go
+import { ILatexTypesetter } from '@jupyterlab/rendermime'
 
 capDGb = np.genfromtxt("output data/Cap DGb 2-0.csv",delimiter=',')
 cap_rt = np.genfromtxt("output data/Cap rt 2-0.csv", delimiter=',')
@@ -27,7 +28,7 @@ fig.add_trace(go.Scatter(x=cap_rt, y=capDGb, mode='markers + lines', name='Cap')
 fig.add_trace(go.Scatter(x=body_rt, y=bodyDGb, mode='markers + lines', name='Body'))
 fig.add_trace(go.Scatter(x=base_rt, y=baseDGb, mode='markers + lines', name='Base'))
 fig.update_layout(title="$Compiled: \\quad \Delta G_b = G_b^{post} - G_b^{pre}$",
-                        xaxis_title="$r_{t,rim} \\, (nm)$", yaxis_title="Energy (kT)")
+                        xaxis_title=r"$r_{t,rim} \\, (nm)$", yaxis_title="Energy (kT)")
 fig.show()
 
 logFig = go.Figure()
