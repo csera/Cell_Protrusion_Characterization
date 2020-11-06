@@ -1,5 +1,7 @@
 # Curtis Sera
-# v1.0 (for v2.0 of data generating scripts)
+# v1.0 for 
+#    v2.0 of CapFusionPrePost and BodyFusionPrePost
+#    v2.1 of BaseFusionPrePost
 # 2020-10-21
 
 import numpy as np
@@ -11,8 +13,8 @@ cap_rt = np.genfromtxt("output data/Cap rt 2-0.csv", delimiter=',')
 bodyDGb = np.genfromtxt("output data/Body DGb 2-0.csv",delimiter=',')
 body_rt = np.genfromtxt("output data/Body rt 2-0.csv", delimiter=',')
 
-baseDGb = np.genfromtxt("output data/Base DGb 2-0.csv",delimiter=',')
-base_rt = np.genfromtxt("output data/Base rt 2-0.csv", delimiter=',')
+baseDGb = np.genfromtxt("output data/Base min path 2-1.csv",delimiter=',')
+base_rt = np.genfromtxt("output data/Base rt 2-1.csv", delimiter=',')
 
 print('base_rt = ',base_rt)
 print('baseDGb = ',baseDGb)

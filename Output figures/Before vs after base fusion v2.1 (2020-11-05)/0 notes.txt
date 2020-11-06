@@ -1,0 +1,16 @@
+done using v2.1 of BaseFusionPrePost.ipynb
+
+"Postfusion rims Gs.png" shows the bending energies of the...
+- rim formed on the protrusion that was just cut off
+- rim formed on the bulk side that is basically a fusion pore now
+	- calculated both via Kozlov 1989 and via my Reimann sum method
+
+To get GPost, the fusion pore energy is now added to the protrusion rim Gb
+- done using only my solution to the pore Gb
+
+The min path on the DGb surface is recognized by simple inspection to be the one
+going along one of the edges where either the protrusion rim rt or the pore rim
+rt is at a max.  Since it seems more reasonable to let the fusion pore rt be 
+huge than the protrusion remnant's and to keep it consistent w/ the other
+segments' plots, I chose to take the min path as Gb vs portrusion rim rt with
+pore rt held constant at its max.
