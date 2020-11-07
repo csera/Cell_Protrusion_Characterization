@@ -1,7 +1,7 @@
 Done using...
-BaseFusionPrePost.ipynb v2.1.1
-BodyFusionPrePost.ipynb v2.0.4
-CapFusionPrePost.ipynb v2.0.4
+BaseFusionPrePost.ipynb v2.1.2
+BodyFusionPrePost.ipynb v2.0.5
+CapFusionPrePost.ipynb v2.0.5
 
 -----------------------------------------
 - Base fusion notes			-
