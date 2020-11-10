@@ -1,20 +1,20 @@
 # Curtis Sera
-# v2.2.1 for 
-#    v2.2.x of CapFusionPrePost, BodyFusionPrePost, and BaseFusionPrePost
+# v2.3 for 
+#    v2.3.x of CapFusionPrePost, BodyFusionPrePost, and BaseFusionPrePost
 # Using *MATPLOTLIB*, not Plotly since req LaTeX
 # 2020-11-09
 
 import numpy as np
 import matplotlib.pyplot as pt
 
-capDGb = np.genfromtxt("output data/Cap DGb 2-2.csv",delimiter=',')
-cap_rt = np.genfromtxt("output data/Cap rt 2-2.csv", delimiter=',')
+capDGb = np.genfromtxt("output data/Cap DGb 2-3.csv",delimiter=',')
+cap_rt = np.genfromtxt("output data/Cap rt 2-3.csv", delimiter=',')
 
-bodyDGb = np.genfromtxt("output data/Body DGb 2-2.csv",delimiter=',')
-body_rt = np.genfromtxt("output data/Body rt 2-2.csv", delimiter=',')
+bodyDGb = np.genfromtxt("output data/Body DGb 2-3.csv",delimiter=',')
+body_rt = np.genfromtxt("output data/Body rt 2-3.csv", delimiter=',')
 
-baseDGb = np.genfromtxt("output data/Base min path 2-2.csv",delimiter=',')
-base_rt = np.genfromtxt("output data/Base rt 2-2.csv", delimiter=',')
+baseDGb = np.genfromtxt("output data/Base min path 2-3.csv",delimiter=',')
+base_rt = np.genfromtxt("output data/Base rt 2-3.csv", delimiter=',')
 
 print('base_rt = ',base_rt)
 print('baseDGb = ',baseDGb)
